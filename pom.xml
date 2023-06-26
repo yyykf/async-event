@@ -11,6 +11,7 @@
     <modules>
         <module>async-event-spring-boot-starter</module>
         <module>async-event-spring-boot-autoconfigure</module>
+        <module>async-event-sample</module>
     </modules>
 
     <properties>
@@ -35,6 +36,17 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>site.code4j</groupId>
+                <artifactId>async-event-spring-boot-autoconfigure</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>site.code4j</groupId>
+                <artifactId>async-event-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
