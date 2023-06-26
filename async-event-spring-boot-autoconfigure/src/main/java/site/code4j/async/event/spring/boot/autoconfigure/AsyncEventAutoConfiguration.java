@@ -6,12 +6,12 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ApplicationEventMulticaster;
 import org.springframework.context.event.SimpleApplicationEventMulticaster;
 import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import site.code4j.async.event.spring.boot.autoconfigure.AsyncEventProperties.ThreadPoolProperties;
 
 /**
@@ -20,7 +20,7 @@ import site.code4j.async.event.spring.boot.autoconfigure.AsyncEventProperties.Th
  * @Date 2023/6/26 23:38
  */
 @Configuration
-@ConditionalOnProperty(prefix = AsyncEventProperties.CODE4J_ASYNC_EVENT_PREFIX, name = "enabled", havingValue = "true")
+@EnableConfigurationProperties(AsyncEventProperties.class)
 public class AsyncEventAutoConfiguration {
 
     private final AsyncEventProperties properties;
@@ -30,6 +30,7 @@ public class AsyncEventAutoConfiguration {
         this.properties = properties;
     }
 
+    @ConditionalOnProperty(prefix = AsyncEventProperties.CODE4J_ASYNC_EVENT_PREFIX, name = "enabled", havingValue = "true")
     @Bean(name = AbstractApplicationContext.APPLICATION_EVENT_MULTICASTER_BEAN_NAME)
     public ApplicationEventMulticaster applicationEventMulticaster() {
         // todo 需要重写 Multicaster，如果事件实现了异步接口，那么就异步调用监听器，否则按原有逻辑，这样可以避免系统中所有的事件都被异步处理，无法兼容以前的逻辑
@@ -46,7 +47,6 @@ public class AsyncEventAutoConfiguration {
                 new ThreadFactoryBuilder().setNameFormat("async-event-pool-%d").build());
 
         eventMulticaster.setTaskExecutor(executor);
-        eventMulticaster.setTaskExecutor(new SimpleAsyncTaskExecutor());
         return eventMulticaster;
     }
 }
