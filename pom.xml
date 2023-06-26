@@ -10,11 +10,14 @@
     <packaging>pom</packaging>
     <modules>
         <module>async-event-spring-boot-starter</module>
-        <module>async-event-spring-boot-configure</module>
+        <module>async-event-spring-boot-autoconfigure</module>
     </modules>
 
     <properties>
+        <jdk.version>1.8</jdk.version>
+        <file.encoding>UTF-8</file.encoding>
         <spring.boot.version>2.5.14</spring.boot.version>
+        <guava.version>32.0.1-jre</guava.version>
     </properties>
 
     <dependencyManagement>
@@ -27,7 +30,27 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                    <encoding>${file.encoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

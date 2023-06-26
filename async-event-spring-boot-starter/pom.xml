@@ -14,7 +14,7 @@
 <dependencies>
     <dependency>
         <groupId>site.code4j</groupId>
-        <artifactId>async-event-spring-boot-configure</artifactId>
+        <artifactId>async-event-spring-boot-autoconfigure</artifactId>
         <version>${project.parent.version}</version>
     </dependency>
 </dependencies>
