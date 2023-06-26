@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = AsyncEventProperties.CODE4J_ASYNC_EVENT_PREFIX)
 public class AsyncEventProperties {
 
-    public static final String CODE4J_ASYNC_EVENT_PREFIX = "code4j.async.event.async";
+    public static final String CODE4J_ASYNC_EVENT_PREFIX = "code4j.async.event";
 
     /** 是否开启异步事件 */
     private boolean enabled = true;
