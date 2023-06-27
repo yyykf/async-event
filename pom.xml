@@ -12,6 +12,7 @@
         <module>async-event-spring-boot-starter</module>
         <module>async-event-spring-boot-autoconfigure</module>
         <module>async-event-sample</module>
+        <module>async-event-core</module>
     </modules>
 
     <properties>
@@ -19,6 +20,7 @@
         <file.encoding>UTF-8</file.encoding>
         <spring.boot.version>2.5.14</spring.boot.version>
         <guava.version>32.0.1-jre</guava.version>
+        <slf4j.version>1.7.6</slf4j.version>
     </properties>
 
     <dependencyManagement>
@@ -37,6 +39,11 @@
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>site.code4j</groupId>
@@ -46,6 +53,11 @@
             <dependency>
                 <groupId>site.code4j</groupId>
                 <artifactId>async-event-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>site.code4j</groupId>
+                <artifactId>async-event-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
