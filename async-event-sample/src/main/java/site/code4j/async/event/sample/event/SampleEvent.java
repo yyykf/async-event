@@ -13,7 +13,7 @@ public class SampleEvent {
         this.msg = msg;
     }
 
-    public String getMsg() {
+    public final String getMsg() {
         return msg;
     }
 }

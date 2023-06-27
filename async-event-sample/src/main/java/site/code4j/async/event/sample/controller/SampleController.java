@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import site.code4j.async.event.sample.event.AsyncSampleEvent;
 import site.code4j.async.event.sample.event.SampleEvent;
 
 /**
@@ -20,5 +21,10 @@ public class SampleController {
     @GetMapping("/publishEvent")
     public void publishEvent(){
         ctx.publishEvent(new SampleEvent("hello world"));
+    }
+
+    @GetMapping("/publishAsyncEvent")
+    public void publishAsyncEvent(){
+        ctx.publishEvent(new AsyncSampleEvent("hello world"));
     }
 }
